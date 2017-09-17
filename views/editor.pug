@@ -1,0 +1,32 @@
+extends layout
+
+append head
+	link(rel='stylesheet', href='/styles/editor.css')
+	script(src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous")
+	script(src='/scripts/editor.js')
+
+block content
+	.toolbars
+	.editor
+		.catbar
+			.categories
+				- var i = 0;
+				while i < project.colcount
+					.category= "col " + (i ++)
+		.assetlist
+			.assets
+				- var j = 0;
+				while j < project.rowcount
+					.asset
+						.name= "asset " + (j ++)
+		.sheet
+			.rows
+				- var j = 0;
+				while j < project.rowcount
+					.row
+						- var i = 0;
+						while i < project.colcount
+							.cell
+								.status= i +", " + j
+							- i ++;
+					- j ++;

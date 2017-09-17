@@ -1,0 +1,57 @@
+*
+	font-family: monospace
+
+$catbar-height: 3em
+$assetlist-width: 20em
+$row-height: 6em
+$col-width: 8em
+
+$infinity: 99999999999999999em
+
+.editor
+	overflow: hidden
+	.catbar
+		position: fixed
+		left: $assetlist-width
+		height: $catbar-height
+		width: $infinity
+		.categories
+			display: table
+			position: relative
+			height: 100%
+			.category
+				display: table-cell
+				height: 100%
+				width: $col-width
+				border-style: solid
+	.assetlist
+		position: fixed
+		top: $catbar-height
+		width: $assetlist-width
+		.assets
+			position: relative
+			width: 100%
+			.asset
+				width: 100%
+				height: $row-height
+				border-style: solid
+	.sheet
+		overflow: hidden
+		position: fixed
+		left: $assetlist-width
+		right: 0
+		top: $catbar-height
+		bottom: 0
+		.rows
+			// display: table
+			.row
+				// display: table-row
+				.cell
+					// display: table-cell
+					display: inline-block
+					width: $col-width
+					height: $row-height
+					border-style: solid
+
+			
+	
