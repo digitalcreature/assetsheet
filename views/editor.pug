@@ -6,27 +6,22 @@ append head
 	script(src='/scripts/editor.js')
 
 block content
-	.toolbars
 	.editor
-		.catbar
-			.categories
+		.toolbars
+		.sheet
+			.row.header
+				.cell.first
 				- var i = 0;
 				while i < project.colcount
-					.category= "col " + (i ++)
-		.assetlist
-			.assets
-				- var j = 0;
-				while j < project.rowcount
-					.asset
-						.name= "asset " + (j ++)
-		.sheet
-			.rows
-				- var j = 0;
-				while j < project.rowcount
-					.row
-						- var i = 0;
-						while i < project.colcount
-							.cell
-								.status= i +", " + j
-							- i ++;
-					- j ++;
+					.cell= "col " + (i ++)
+			- var j = 0;
+			while j < project.rowcount
+				.row
+					.cell.first
+						.name= "asset " + j
+					- var i = 0;
+					while i < project.colcount
+						.cell
+							.status= i +", " + j
+						- i ++;
+				- j ++;
