@@ -1,0 +1,31 @@
+extends layout
+
+block content
+	.login
+		form(
+			action='/login/auth'
+			method='post'
+			name='login'
+		)
+			.username
+				label Username:
+				input(
+					type = 'text'
+					name = 'username'
+					autocomplete
+					required
+					placeholder = "Username"
+				)
+			.password
+				label Password:
+				input(
+					type = 'password'
+					name = 'password'
+					autocomplete
+					required
+					placeholder = "Password"
+				)
+			.submit
+				button(
+					type = 'submit'
+				) Login

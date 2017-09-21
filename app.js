@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var editor = require('./routes/editor');
 
 var app = express();
 
@@ -21,7 +20,27 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', editor);
+
+var auth = express.Router();
+auth.use(function(req, res, next) {
+	// verify authentication
+	if (req.cookies.user != null) {
+		next();
+	}
+	else {
+		// redirect back to login
+		res.redirect('/login/');
+	}
+});
+// all routes requiring authentication should be attacked to the auth router
+auth.use('/project/', require('./routes/project'));
+
+app.use('/login/', require('./routes/login'));
+app.use(auth);
+
+app.get('/', function(req, res) {
+	res.redirect('/login/');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
